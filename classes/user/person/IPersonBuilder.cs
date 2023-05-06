@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GraditeljDomaci.classes.user.person
 {
-    public interface IPersonBuilder : IUserBuilderBase<Person, IPersonBuilder>
+    public interface IPersonBuilder
     {
     }
 }

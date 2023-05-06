@@ -13,8 +13,6 @@ namespace GraditeljDomaci.classes.user.person
         public string Surname { get; set; }
         public char Gender { get; set; }
 
-        public Person() { }
-
         public Person(string jmbg, string name, string surname, char gender)
         {
             Jmbg = jmbg;
@@ -25,7 +23,7 @@ namespace GraditeljDomaci.classes.user.person
 
         public override string ToString()
         {
-            return $"JMBG: {Jmbg}, Ime: {Name}, Prezime: {Surname}, Pol: {Gender}";
+            return $"JMBG: {Jmbg}\nIme: {Name}\nPrezime: {Surname}\nPol: {Gender}\n";
         }
     }
 }

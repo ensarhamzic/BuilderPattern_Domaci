@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace GraditeljDomaci.classes.user.person
 {
-    public static class PersonDirector
+    public class PersonBuilder : UserBuilderBase<Person, PersonBuilder>, IPersonBuilder
     {
-        public static PersonBuilder Builder()
+        public override Person Build()
         {
-            return new PersonBuilder();
+            return new Person(_jmbg, _name, _surname, _gender);
         }
     }
 }

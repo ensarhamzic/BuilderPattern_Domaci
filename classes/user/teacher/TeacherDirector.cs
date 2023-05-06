@@ -2,9 +2,9 @@
 {
     public static class TeacherDirector
     {
-        public static ITeacherBuilder PersonBuilder()
+        public static TeacherBuilder Builder()
         {
-            return new ConcreteTeacherBuilder();
+            return new TeacherBuilder();
         }
     }
 }

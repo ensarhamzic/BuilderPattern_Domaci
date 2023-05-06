@@ -1,4 +1,5 @@
 ﻿using GraditeljDomaci.classes.user.person;
+using GraditeljDomaci.classes.user.rank;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,21 +10,22 @@ namespace GraditeljDomaci.classes.user.teacher
 {
     public class Teacher : Person
     {
-        public string Rank { get; set; }
+        public Rank Rank { get; set; }
         public DateOnly Birthday { get; set; }
         public int YearsOfService { get; set; }
 
-        public Teacher() { }
-
         // constructor with all parameters that calls base constructor
-        public Teacher(string jmbg, string name, string surname, char gender, string rank) : base(jmbg, name, surname, gender)
+        public Teacher(string jmbg, string name, string surname, char gender, Rank rank, DateOnly birthday, int yearsOfService) : base(jmbg, name, surname, gender)
         {
             Rank = rank;
+            Birthday = birthday;
+            YearsOfService = yearsOfService;
         }
 
         public override string ToString()
         {
-            return $"JMBG: {Jmbg}, Ime: {Name}, Prezime: {Surname}, Pol: {Gender}, Pol: {Gender}, Zvanje: {Rank}, Datum rodjenja: {Birthday}, Godine Staza: {YearsOfService}";
+            var baseToString = base.ToString();
+            return $"{baseToString}Zvanje: {Rank.Name}\nDatum rodjenja: {Birthday}\nGodine Staza: {YearsOfService}\n";
         }
     }
 }

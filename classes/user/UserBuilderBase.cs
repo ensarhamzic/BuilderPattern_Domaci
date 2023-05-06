@@ -7,49 +7,49 @@ using GraditeljDomaci.classes.user.person;
 
 namespace GraditeljDomaci.classes.user
 {
-    public abstract class ConcreteUserBuilderBase : IPersonBuilder
+    // Implementira interfejs IUserBuilderBas, koji je parametrizovan tipom T i tipom TBuilder
+    // T predstavlja tip objekta koji se gradi
+    // TBuilder predstavlja tip objekta koji gradi objekat tipa T
+    public abstract class UserBuilderBase<T, TBuilder> : IUserBuilderBase<T, TBuilder>
+        where TBuilder : UserBuilderBase<T, TBuilder>
     {
         protected string _jmbg { get; set; } = "0000000000000";
         protected string _name { get; set; } = "Ime";
         protected string _surname { get; set; } = "Prezime";
         protected char _gender { get; set; } = 'M';
 
-
-        public IPersonBuilder Jmbg(string jmbg)
+        public TBuilder Jmbg(string jmbg)
         {
             if (jmbg.Length != 13)
                 throw new ArgumentException("JMBG mora biti dužine 13 karaktera.");
             _jmbg = jmbg;
-            return this;
+            return (TBuilder)this;
         }
 
-        public IPersonBuilder Name(string name)
+        public TBuilder Name(string name)
         {
             if (name.Length < 3 || name.Length > 20)
                 throw new ArgumentException("Ime mora biti dužine između 3 i 20 karaktera.");
             _name = name;
-            return this;
+            return (TBuilder)this;
         }
 
-        public IPersonBuilder Surname(string surname)
+        public TBuilder Surname(string surname)
         {
             if (surname.Length < 3 || surname.Length > 30)
                 throw new ArgumentException("Prezime mora biti dužine između 3 i 20 karaktera.");
             _surname = surname;
-            return this;
+            return (TBuilder)this;
         }
 
-        public IPersonBuilder Gender(char gender)
+        public TBuilder Gender(char gender)
         {
             if (gender != 'M' && gender != 'Z')
                 throw new ArgumentException("Pol mora biti 'M' ili 'Z'.");
             _gender = gender;
-            return this;
+            return (TBuilder)this;
         }
 
-        public Person Build()
-        {
-            return new Person(_jmbg, _name, _surname, _gender);
-        }
+        public abstract T Build();
     }
 }
